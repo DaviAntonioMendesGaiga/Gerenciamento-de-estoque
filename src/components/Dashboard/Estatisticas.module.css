@@ -74,3 +74,19 @@
   margin-left: 10px;
   vertical-align: middle;
 }
+
+@media (max-width:840px){
+    .estatisticasContainer{
+        display:flex;
+        gap:20px;
+    }
+
+}
+
+@media (max-width:840px){
+    .estatisticasContainer{
+        display:flex;
+        gap:0px;
+    }
+
+}

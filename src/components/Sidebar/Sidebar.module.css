@@ -1,11 +1,17 @@
 .sidebar {
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
   background-color: rgb(35, 35, 46);
   color: white;
-  height: 100vh;
-  width: fit-content;
-  padding: 40px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  z-index: 100;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav {
@@ -15,32 +21,25 @@
 
 .nav ul {
   list-style-type: none;
-  padding: 0;
+  padding-left: 0;
   margin: 0;
 }
 
 .nav li {
   margin-top: 60px;
-  width: fit-content;
-}
-
-/* Estilo para os links do react-scroll dentro do li */
-.navLink {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: inherit; /* herda a cor branca da sidebar */
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 25px;
-  transition: transform 0.25s ease;
+  transition: 0.25s;
 }
 
-.navLink:hover {
-  transform: scale(1.05);
-  color: #ddd;
+
+.nav li:hover {
+  transform: scale(1.03);
+  cursor: pointer;
 }
+
+
 
 .sairBtn {
   display: flex;
@@ -50,9 +49,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-top: 60px;
-  align-items: center;
-  gap: 10px;
+  margin-top: auto;
 }
 
 .sairBtn:hover {
@@ -63,4 +60,45 @@
 
 .sairBtn svg {
   margin-right: 24px;
+}
+
+/* Botão hamburguer para outras situações, pode deixar invisível agora */
+.mobileMenuButton {
+  display: none;
+}
+
+/* --- Layout vertical a partir de 1130px ou menos --- */
+@media (max-width: 1130px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .nav {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .nav li {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .sairBtn {
+    margin-top: 20px;
+    align-self: center;
+  }
 }
