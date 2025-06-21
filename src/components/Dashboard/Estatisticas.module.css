@@ -1,0 +1,76 @@
+/* Container */
+.estatisticasContainer {
+    display:flex;
+    gap:50px;
+}
+
+/* Avisos Rápidos */
+.produtosCadastrados,.baixoEstoque,.itensEstoque,.vendasDia {
+    transition:0.25s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.produtosCadastrados:hover, .baixoEstoque:hover, .itensEstoque:hover, .vendasDia:hover{
+    transform:scale(1.04);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Produtos Cadastrados */
+.produtosCadastrados{
+    margin-top:30px;
+    background-image:linear-gradient(to right,rgb(55, 199, 199),rgb(72, 218, 218), rgb(91, 224, 224));
+    width:fit-content;
+    padding:20px;
+}
+
+.produtosCadastrados h2{
+    color:white;
+    font-weight:bolder;
+}
+
+/* Itens em estoque */
+.itensEstoque{
+    margin-top:30px;
+    background-image:linear-gradient(to right,rgb(42, 30, 85),rgb(51, 36, 105), rgb(61, 42, 131));
+    width:fit-content;
+    padding:20px;
+}
+
+.itensEstoque h2{
+    color:white;
+    font-weight:bolder;
+}
+
+/* Vendas do dia */
+.vendasDia {
+    margin-top:30px;
+    background-image:linear-gradient(to right,rgb(62, 192, 83),rgb(63, 189, 84), rgb(78, 212, 100));
+    width:fit-content;
+    padding:20px;
+}
+
+.vendasDia h2{
+    color:white;
+    font-weight:bolder;
+}
+
+/* Produtos com baixo estoque */
+.baixoEstoque{
+    margin-top:30px;
+    background-image:linear-gradient(to right,rgb(192, 18, 18),rgb(199, 36, 36),rgb(218, 66, 66));
+    width:fit-content;
+    padding:20px;
+}
+
+.baixoEstoque h2{
+    color:white;
+    font-weight:bolder;
+}
+
+/* Ícones */
+.icon {
+  margin-left: 10px;
+  vertical-align: middle;
+}

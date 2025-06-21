@@ -1,0 +1,66 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(35, 35, 46);
+  color: white;
+  height: 100vh;
+  width: fit-content;
+  padding: 40px;
+}
+
+.nav {
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  margin-top: 60px;
+  width: fit-content;
+}
+
+/* Estilo para os links do react-scroll dentro do li */
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit; /* herda a cor branca da sidebar */
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 25px;
+  transition: transform 0.25s ease;
+}
+
+.navLink:hover {
+  transform: scale(1.05);
+  color: #ddd;
+}
+
+.sairBtn {
+  display: flex;
+  background-color: rgb(209, 30, 30);
+  width: 120px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-top: 60px;
+  align-items: center;
+  gap: 10px;
+}
+
+.sairBtn:hover {
+  background-color: rgb(180, 25, 25);
+  transform: scale(1.05);
+  box-shadow: 2px 2px 2px rgb(25, 25, 32);
+}
+
+.sairBtn svg {
+  margin-right: 24px;
+}

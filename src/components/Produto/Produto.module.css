@@ -1,0 +1,134 @@
+
+.produtoContainer {
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-top:40px;
+  transition:0.25s;
+}
+
+.produtoContainer:hover{
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform:scale(1.01);
+}
+
+.botoesContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content:space-around;
+  margin-bottom: 1rem;
+}
+
+.btnAdicionar, .btnExcluir {
+  padding: 40px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  width:450px;
+  font-size:25px;
+  text-transform:uppercase;
+}
+
+.btnAdicionar {
+  background-image:url('../../assets/EnviarBotaoFundo.png');
+  color: white;
+}
+
+.btnAdicionar:hover {
+  background-image: url('../../assets/EnviarBotaoFundoHover.png');
+  transform:scale(1.02);
+}
+
+.btnExcluir {
+  background-image: url('../../assets/ExcluirBotaoFundo.png');
+  color: white;
+}
+
+.btnExcluir:hover {
+  background-image: url('../../assets/ExcluirBotaoFundoHover.png');
+  transform:scale(1.02);
+}
+
+.formulario, .exclusao {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
+  background-color: #f8f8f8;
+  padding: 0 1rem;
+  border-radius: 8px;
+}
+
+
+.visivel {
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 1rem;
+}
+
+.formulario input, .exclusao input {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition:0.2s;
+}
+
+
+.formulario input:hover, .exclusao input:hover{
+  background-color: #f8f8f8ec;
+}
+
+
+.formulario button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:0.25s;
+}
+
+.formulario button:hover {
+  background-color: #0056b3;
+  transform:scale(1.02);
+}
+
+.exclusao ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.exclusao li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.remover {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition:0.2s;
+}
+
+.remover:hover{
+  transform:scale(1.04);
+}

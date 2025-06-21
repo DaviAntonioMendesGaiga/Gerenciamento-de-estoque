@@ -1,0 +1,134 @@
+.buscaContainer {
+  margin-top: 40px;
+  padding:1rem;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 0.4s ease;
+  transition:0.25s;
+}
+
+.buscaContainer:hover{
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform:scale(1.018);
+}
+
+.buscaContainer h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.pesquisaContainer {
+  margin-top:20px;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.pesquisaContainer input {
+  padding: 1.4rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 240px;
+  font-size: 1rem;
+}
+
+.pesquisaContainer button {
+  padding: 1.2rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #2196f3;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size:20px;
+  transition:0.25s;
+}
+
+.pesquisaContainer button:hover {
+  background-color: #1976d2;
+  transform:scale(1.02);
+}
+
+.botaoLimpar {
+  background-color: #e53935;
+}
+
+.botaoLimpar:hover {
+  background-color: #c62828;
+}
+
+.filtros {
+  margin-top:40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.4s ease;
+}
+
+.filtros.mostrar {
+  opacity: 1;
+  max-height: 500px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 200px;
+  font-size: 1rem;
+}
+
+.listaProdutos {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.listaProdutos.mostrar {
+  opacity: 1;
+  max-height: 2000px;
+}
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #333;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  font-size: 16px;
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+/* Efeito de transição */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
