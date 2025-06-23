@@ -1,14 +1,25 @@
-import classes from "./GraficoVendasCompras.module.css"
-
-import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-
-const data = [
-  { mes: 'Jan', vendas: 4000, compras: 2400 },
-  { mes: 'Fev', vendas: 3000, compras: 1398 },
-  { mes: 'Mar', vendas: 5000, compras: 2800 },
-];
+import { useContext } from "react";
+import { ProdutoContext } from "../Produto/ProdutoContext"; // <- corrigido aqui
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from 'recharts';
 
 export default function GraficoVendasCompras() {
+  const { produtos } = useContext(ProdutoContext);
+
+  const data = [
+    { mes: 'Jan', vendas: 4000, compras: 2400 },
+    { mes: 'Fev', vendas: produtos.length * 100, compras: 1398 },
+    { mes: 'Mar', vendas: 5000, compras: produtos.length * 150 },
+  ];
+
   return (
     <div style={{ width: '100%', height: 300 }}>
       <h3>Vendas x Compras</h3>

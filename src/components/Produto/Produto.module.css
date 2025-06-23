@@ -3,55 +3,61 @@
   background-color: white;
   padding: 2rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  margin-top:40px;
-  transition:0.25s;
+  margin-top: 40px;
+  transition: 0.25s;
+  border-radius: 10px;
 }
 
-.produtoContainer:hover{
+.produtoContainer:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transform:scale(1.01);
+  transform: scale(1.01);
 }
 
 .botoesContainer {
   display: flex;
   gap: 1rem;
-  justify-content:space-around;
+  justify-content: space-around;
   margin-bottom: 1rem;
 }
 
-.btnAdicionar, .btnExcluir {
+.btnAdicionar, .btnGerenciar {
   padding: 40px 20px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s;
-  width:450px;
-  font-size:25px;
-  text-transform:uppercase;
+  width: 450px;
+  font-size: 25px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
 }
 
 .btnAdicionar {
-  background-image:url('../../assets/EnviarBotaoFundo.png');
+  background-image: url('../../assets/EnviarBotaoFundo.png');
   color: white;
 }
 
 .btnAdicionar:hover {
   background-image: url('../../assets/EnviarBotaoFundoHover.png');
-  transform:scale(1.02);
+  transform: scale(1.02);
 }
 
-.btnExcluir {
+.btnGerenciar {
   background-image: url('../../assets/ExcluirBotaoFundo.png');
   color: white;
 }
 
-.btnExcluir:hover {
+.btnGerenciar:hover {
   background-image: url('../../assets/ExcluirBotaoFundoHover.png');
-  transform:scale(1.02);
+  transform: scale(1.02);
 }
 
-.formulario, .exclusao {
+.formulario, .gerenciamento {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -60,75 +66,171 @@
   background-color: #f8f8f8;
   padding: 0 1rem;
   border-radius: 8px;
+  margin-top: 1rem;
 }
 
-
 .visivel {
-  max-height: 300px;
+  max-height: 500px;
   opacity: 1;
   transform: translateY(0);
   padding: 1rem;
 }
 
-.formulario input, .exclusao input {
+.formulario input, .gerenciamento input {
   display: block;
   margin: 10px 0;
-  padding: 8px;
+  padding: 12px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  transition:0.2s;
+  transition: 0.2s;
+  font-size: 16px;
 }
 
-
-.formulario input:hover, .exclusao input:hover{
+.formulario input:hover, .gerenciamento input:hover {
   background-color: #f8f8f8ec;
+  border-color: #aaa;
 }
-
 
 .formulario button {
   margin-top: 10px;
-  padding: 8px 16px;
+  padding: 12px 24px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition:0.25s;
+  transition: 0.25s;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
 }
 
 .formulario button:hover {
   background-color: #0056b3;
-  transform:scale(1.02);
+  transform: scale(1.02);
 }
 
-.exclusao ul {
+.gerenciamento ul {
   list-style: none;
   padding-left: 0;
   margin-top: 10px;
 }
 
-.exclusao li {
+.gerenciamento li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 8px;
+  padding: 12px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  margin-top: 5px;
+  margin-top: 8px;
+  transition: 0.2s;
 }
 
-.remover {
-  background: red;
+.gerenciamento li:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.gerenciarBtn {
+  background: #ff9800;
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 4px 8px;
+  padding: 8px 16px;
   cursor: pointer;
-  transition:0.2s;
+  transition: 0.2s;
+  font-weight: bold;
 }
 
-.remover:hover{
-  transform:scale(1.04);
+.gerenciarBtn:hover {
+  transform: scale(1.04);
+  background: #e68a00;
+}
+
+.formRemocao {
+  background-color: #fff3e0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border-left: 4px solid #ff9800;
+}
+
+.formRemocao h4 {
+  margin-top: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.botoesRemocao {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.botoesRemocao button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: bold;
+}
+
+.botoesRemocao button[type="submit"] {
+  background-color: #ff9800;
+  color: white;
+}
+
+.botoesRemocao button[type="submit"]:hover {
+  background-color: #e68a00;
+  transform: scale(1.02);
+}
+
+.removerTotal {
+  background-color: #f44336 !important;
+  color: white;
+}
+
+.removerTotal:hover {
+  background-color: #d32f2f !important;
+  transform: scale(1.02);
+}
+
+.botoesRemocao button:last-child {
+  background-color: #e0e0e0;
+}
+
+.botoesRemocao button:last-child:hover {
+  background-color: #bdbdbd;
+}
+
+/* Responsividade */
+@media (max-width: 1000px) {
+  .botoesContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btnAdicionar, .btnGerenciar {
+    width: 100%;
+    padding: 30px 15px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .produtoContainer {
+    padding: 1.5rem;
+  }
+  
+  .formRemocao {
+    padding: 1rem;
+  }
+  
+  .botoesRemocao {
+    flex-direction: column;
+  }
 }

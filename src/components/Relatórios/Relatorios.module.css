@@ -4,6 +4,9 @@
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   transition: 0.25s;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
 }
 
 .relatorios:hover {
@@ -14,30 +17,39 @@
 .card {
   border-radius: 12px;
   padding: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: 0.25s;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
 }
 
 .card:hover {
-  transform: scale(1.008);
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
 .card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .card ul {
   list-style: none;
   padding-left: 0;
   font-size: 18px;
+  flex-grow: 1;
 }
 
 .card li {
-  padding: 0.4rem 0;
+  padding: 0.6rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
 }
 
 .card li:last-child {
@@ -45,48 +57,109 @@
 }
 
 .card p {
-  margin: 0.5rem 0;
+  margin: 0.7rem 0;
   font-size: 18px;
 }
 
 .card button {
-  margin-top: 1rem;
-  background-color: white;
+  margin-top: auto;
+  background-color: rgba(255, 255, 255, 0.9);
   color: #333;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
   transition: 0.25s;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card button:hover {
-  background-color: #ddd;
+  background-color: white;
   transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* CSS de cores */
 .vermelho {
-  background: linear-gradient(to right, #b71c1c, #f44336);
+  background: linear-gradient(135deg, #b71c1c, #f44336);
 }
 
 .amarelo {
-  background: linear-gradient(to right, #ca9819, #d1c559);
-  color: #ffffff;
+  background: linear-gradient(135deg, #ca9819, #d1c559);
+  color: #333;
+}
+
+.amarelo li {
+  color: #fff;
 }
 
 .azulClaro {
-  background: linear-gradient(to right, #2196f3, #90caf9);
+  background: linear-gradient(135deg, #2196f3, #90caf9);
 }
 
 .verdeClaro {
-  background: linear-gradient(to right, #43a047, #a5d6a7);
+  background: linear-gradient(135deg, #43a047, #a5d6a7);
 }
 
 .lucro {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #e8f5e9;
   font-weight: bold;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.semDados {
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* Contador no título */
+.contador {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 0.9rem;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .relatorios {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .relatorios {
+    padding: 1rem;
+  }
+  
+  .card {
+    padding: 1.2rem;
+  }
+  
+  .card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .card ul, .card p {
+    font-size: 16px;
+  }
 }

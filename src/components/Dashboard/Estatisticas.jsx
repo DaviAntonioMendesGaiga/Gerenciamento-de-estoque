@@ -1,35 +1,38 @@
-import {
-  Boxes,
-  Wallet,
-  ShoppingBag,
-  AlertTriangle
-} from "lucide-react";
+import { Boxes, Wallet, ShoppingBag, AlertTriangle } from "lucide-react";
+import { useProdutos } from "../Produto/ProdutoContext";
 import classes from "./Estatisticas.module.css";
 
 const Estatisticas = () => {
-    return(
-        <div className={classes.estatisticasContainer}>
-            <div className={classes.produtosCadastrados}>
-                    <h2>Produtos Cadastrados <Boxes size={20} className={classes.icon} /></h2>
-                    <p>Dado</p>
-                  </div>
-            
-                  <div className={classes.itensEstoque}>
-                    <h2>Faturamento do mês <Wallet size={20} className={classes.icon} /></h2>
-                    <p>Dado</p>
-                  </div>
-            
-                  <div className={classes.vendasDia}>
-                    <h2>Vendas do dia <ShoppingBag size={20} className={classes.icon} /></h2>
-                    <p>Dado</p>
-                  </div>
-            
-                  <div className={classes.baixoEstoque}>
-                    <h2>Produtos com baixo estoque <AlertTriangle size={20} className={classes.icon} /></h2>
-                    <p>Dado</p>
-            </div>
-        </div>
-    )
-}
+  const { produtos } = useProdutos();
 
-export default Estatisticas
+  const produtosCadastrados = produtos.length;
+  const faturamento = produtos.reduce((acc, p) => acc + p.preco * p.quantidade, 0);
+  const vendasDoDia = 5; // pode simular ou integrar depois
+  const baixoEstoque = produtos.filter((p) => p.quantidade <= 3).length;
+
+  return (
+    <div className={classes.estatisticasContainer}>
+      <div className={classes.produtosCadastrados}>
+        <h2>Produtos Cadastrados <Boxes size={20} className={classes.icon} /></h2>
+        <p>{produtosCadastrados}</p>
+      </div>
+
+      <div className={classes.itensEstoque}>
+        <h2>Faturamento do mês <Wallet size={20} className={classes.icon} /></h2>
+        <p>R$ {faturamento}</p>
+      </div>
+
+      <div className={classes.vendasDia}>
+        <h2>Vendas do dia <ShoppingBag size={20} className={classes.icon} /></h2>
+        <p>{vendasDoDia}</p>
+      </div>
+
+      <div className={classes.baixoEstoque}>
+        <h2>Produtos com baixo estoque <AlertTriangle size={20} className={classes.icon} /></h2>
+        <p>{baixoEstoque}</p>
+      </div>
+    </div>
+  );
+};
+
+export default Estatisticas;

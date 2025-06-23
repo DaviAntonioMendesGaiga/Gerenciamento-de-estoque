@@ -196,6 +196,50 @@ input:hover{
   background-color:rgb(247, 247, 247);
 }
 
+.formularioNovaVenda {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.formularioNovaVenda h2 {
+  margin-bottom: 1rem;
+}
+
+.formularioNovaVenda form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.formularioNovaVenda select,
+.formularioNovaVenda input {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #10b981;
+  font-size: 1rem;
+  flex: 1 1 200px;
+}
+
+.formularioNovaVenda button {
+  padding: 0.6rem 1.2rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.25s;
+  flex: 0 0 auto;
+}
+
+.formularioNovaVenda button:hover {
+  background-color: #11a070;
+  transform: scale(1.02);
+}
 
 /* Responsividade */
 @media (max-width: 768px) {

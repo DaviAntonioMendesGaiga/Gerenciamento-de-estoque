@@ -1,93 +1,193 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useProdutos } from '../Produto/ProdutoContext';
+import { useVendas } from '../Vendas/VendaContext';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import classes from './Relatorios.module.css';
 
 const Relatorios = () => {
-  const historicoEstoque = [
-    { produto: 'Tênis Adidas Run', tipo: 'Entrada', quantidade: 20, data: '2025-06-16' },
-    { produto: 'Camiseta Nike DryFit', tipo: 'Saída', quantidade: 5, data: '2025-06-15' },
-    { produto: 'Calça Jeans Slim', tipo: 'Ajuste', quantidade: -2, data: '2025-06-14' },
-    { produto: 'Tênis Nike Air', tipo: 'Saída', quantidade: 8, data: '2025-06-13' },
-    { produto: 'Bermuda Jeans', tipo: 'Entrada', quantidade: 10, data: '2025-06-12' },
-  ];
+  const { produtos } = useProdutos();
+  const { vendas } = useVendas();
+  
+  const [estoqueBaixo, setEstoqueBaixo] = useState([]);
+  const [produtosParados, setProdutosParados] = useState([]);
+  const [historicoEstoque, setHistoricoEstoque] = useState([]);
+  const [relatorioFinanceiro, setRelatorioFinanceiro] = useState({
+    totalCompras: 0,
+    totalVendas: 0,
+    lucro: 0
+  });
 
-  const estoqueBaixo = [
-    { produto: 'Chinelo Havaianas', estoque: 2 },
-    { produto: 'Boné Puma', estoque: 3 },
-    { produto: 'Camiseta Branca Básica', estoque: 4 },
-    { produto: 'Tênis Vans Old Skool', estoque: 1 },
-    { produto: 'Jaqueta Jeans Slim', estoque: 2 },
-  ];
+  // Calcular produtos com estoque baixo
+  useEffect(() => {
+    const baixoEstoque = produtos
+      .filter(p => p.quantidade < 10)
+      .map(p => ({ produto: p.nome, estoque: p.quantidade }));
+    
+    setEstoqueBaixo(baixoEstoque);
+  }, [produtos]);
 
-  const produtosParados = [
-    { produto: 'Jaqueta Couro Zíper', diasSemMovimentar: 45 },
-    { produto: 'Camisa Polo Branca', diasSemMovimentar: 30 },
-    { produto: 'Blusa Manga Longa', diasSemMovimentar: 27 },
-    { produto: 'Tênis Fila Sport', diasSemMovimentar: 60 },
-  ];
+  // Calcular produtos parados (sem movimentação nos últimos 30 dias)
+  useEffect(() => {
+    const trintaDiasAtras = new Date();
+    trintaDiasAtras.setDate(trintaDiasAtras.getDate() - 30);
+    
+    const produtosComMovimentacao = produtos.map(p => {
+      const vendasProduto = vendas.filter(v => v.produtoId === p.id);
+      const ultimaVenda = vendasProduto.length > 0 
+        ? new Date(Math.max(...vendasProduto.map(v => new Date(v.data)))) 
+        : null;
+      
+      const diasSemMovimentar = ultimaVenda 
+        ? Math.floor((new Date() - ultimaVenda) / (1000 * 60 * 60 * 24)) 
+        : 'Nunca vendido';
+      
+      return {
+        produto: p.nome,
+        diasSemMovimentar: typeof diasSemMovimentar === 'number' ? diasSemMovimentar : 999
+      };
+    });
+    
+    const parados = produtosComMovimentacao
+      .filter(p => p.diasSemMovimentar > 30)
+      .map(p => ({
+        produto: p.produto,
+        diasSemMovimentar: p.diasSemMovimentar === 999 ? 'Nunca vendido' : p.diasSemMovimentar
+      }));
+    
+    setProdutosParados(parados);
+  }, [produtos, vendas]);
 
-  const relatorioFinanceiro = {
-    totalCompras: 3200,
-    totalVendas: 7800,
-    lucro: 4600,
-  };
+  // Criar histórico de estoque combinando vendas e entradas
+  useEffect(() => {
+    const historico = [];
+    
+    // Adicionar vendas como saídas
+    vendas.forEach(venda => {
+      historico.push({
+        produto: venda.produtoNome,
+        tipo: 'Saída',
+        quantidade: -venda.quantidadeVendida,
+        data: venda.data
+      });
+    });
+    
+    // Ordenar por data
+    historico.sort((a, b) => new Date(b.data) - new Date(a.data));
+    
+    setHistoricoEstoque(historico.slice(0, 50)); // Limitar a 50 registros
+  }, [vendas]);
+
+  // Calcular relatório financeiro
+  useEffect(() => {
+    const totalVendas = vendas.reduce((acc, v) => acc + (v.quantidadeVendida * v.preco), 0);
+    
+    // Para este exemplo, vamos considerar que o custo é 60% do preço de venda
+    const custoTotal = vendas.reduce((acc, v) => acc + (v.quantidadeVendida * v.preco * 0.6), 0);
+    
+    setRelatorioFinanceiro({
+      totalCompras: custoTotal,
+      totalVendas: totalVendas,
+      lucro: totalVendas - custoTotal
+    });
+  }, [vendas]);
 
   const exportarPDF = (titulo, colunas, dados) => {
     const doc = new jsPDF();
+    doc.setFontSize(18);
     doc.text(titulo, 14, 20);
+    
+    // Formatar dados monetários
+    const formattedData = dados.map(row => {
+      return row.map(cell => {
+        if (typeof cell === 'number' && cell > 100) {
+          return `R$ ${cell.toFixed(2)}`;
+        }
+        return cell;
+      });
+    });
+    
     autoTable(doc, {
       startY: 30,
       head: [colunas],
-      body: dados,
+      body: formattedData,
+      styles: { fontSize: 10 },
+      headStyles: { fillColor: [41, 128, 185] }
     });
+    
     doc.save(`${titulo.replace(/\s+/g, '_').toLowerCase()}.pdf`);
   };
 
   return (
     <div className={classes.relatorios}>
       <section className={`${classes.card} ${classes.vermelho}`}>
-        <h3>📉 Produtos com Estoque Baixo</h3>
+        <h3>📉 Produtos com Estoque Baixo ({estoqueBaixo.length})</h3>
         <ul>
           {estoqueBaixo.slice(0, 3).map((item, i) => (
             <li key={i}><strong>{item.produto}</strong> – {item.estoque} unidades</li>
           ))}
         </ul>
-        <button onClick={() => exportarPDF('Produtos com Estoque Baixo', ['Produto', 'Estoque'], estoqueBaixo.map(item => [item.produto, item.estoque]))}>
-          Ver Todos (PDF)
-        </button>
+        {estoqueBaixo.length > 0 ? (
+          <button onClick={() => exportarPDF('Produtos com Estoque Baixo', ['Produto', 'Estoque'], estoqueBaixo.map(item => [item.produto, item.estoque]))}>
+            Ver Todos (PDF)
+          </button>
+        ) : (
+          <p className={classes.semDados}>Nenhum produto com estoque baixo</p>
+        )}
       </section>
 
       <section className={`${classes.card} ${classes.amarelo}`}>
-        <h3>💤 Produtos Parados</h3>
+        <h3>💤 Produtos Parados ({produtosParados.length})</h3>
         <ul>
           {produtosParados.slice(0, 3).map((item, i) => (
-            <li key={i}><strong>{item.produto}</strong> – {item.diasSemMovimentar} dias sem movimentação</li>
+            <li key={i}>
+              <strong>{item.produto}</strong> – 
+              {typeof item.diasSemMovimentar === 'number' 
+                ? ` ${item.diasSemMovimentar} dias sem movimentação` 
+                : ` ${item.diasSemMovimentar}`}
+            </li>
           ))}
         </ul>
-        <button onClick={() => exportarPDF('Produtos Parados', ['Produto', 'Dias sem movimentação'], produtosParados.map(item => [item.produto, item.diasSemMovimentar]))}>
-          Ver Todos (PDF)
-        </button>
+        {produtosParados.length > 0 ? (
+          <button onClick={() => exportarPDF('Produtos Parados', ['Produto', 'Dias sem movimentação'], produtosParados.map(item => [item.produto, item.diasSemMovimentar]))}>
+            Ver Todos (PDF)
+          </button>
+        ) : (
+          <p className={classes.semDados}>Todos os produtos tiveram movimentação recente</p>
+        )}
       </section>
 
       <section className={`${classes.card} ${classes.azulClaro}`}>
-        <h3>🧾 Histórico de Alterações no Estoque</h3>
+        <h3>🧾 Histórico de Movimentações ({historicoEstoque.length})</h3>
         <ul>
           {historicoEstoque.slice(0, 3).map((item, i) => (
-            <li key={i}><strong>{item.data}</strong> – {item.tipo}: {item.produto} ({item.quantidade > 0 ? '+' : ''}{item.quantidade})</li>
+            <li key={i}>
+              <strong>{item.data}</strong> – {item.tipo}: {item.produto} ({item.quantidade > 0 ? '+' : ''}{item.quantidade})
+            </li>
           ))}
         </ul>
-        <button onClick={() => exportarPDF('Histórico de Alterações no Estoque', ['Data', 'Tipo', 'Produto', 'Quantidade'], historicoEstoque.map(item => [item.data, item.tipo, item.produto, item.quantidade]))}>
-          Ver Todos (PDF)
-        </button>
+        {historicoEstoque.length > 0 ? (
+          <button onClick={() => exportarPDF('Histórico de Movimentações', ['Data', 'Tipo', 'Produto', 'Quantidade'], historicoEstoque.map(item => [item.data, item.tipo, item.produto, item.quantidade]))}>
+            Ver Todos (PDF)
+          </button>
+        ) : (
+          <p className={classes.semDados}>Nenhuma movimentação registrada</p>
+        )}
       </section>
 
       <section className={`${classes.card} ${classes.verdeClaro}`}>
-        <h3>💰 Relatório Financeiro Básico</h3>
+        <h3>💰 Relatório Financeiro</h3>
         <p>Total Comprado: <strong>R$ {relatorioFinanceiro.totalCompras.toFixed(2)}</strong></p>
         <p>Total Vendido: <strong>R$ {relatorioFinanceiro.totalVendas.toFixed(2)}</strong></p>
         <p className={classes.lucro}>Lucro: <strong>R$ {relatorioFinanceiro.lucro.toFixed(2)}</strong></p>
-        <button onClick={() => exportarPDF('Relatório Financeiro Básico', ['Total Comprado', 'Total Vendido', 'Lucro'], [[relatorioFinanceiro.totalCompras, relatorioFinanceiro.totalVendas, relatorioFinanceiro.lucro]])}>
+        <button onClick={() => {
+          const dados = [
+            ['Total Comprado', relatorioFinanceiro.totalCompras.toFixed(2)],
+            ['Total Vendido', relatorioFinanceiro.totalVendas.toFixed(2)],
+            ['Lucro', relatorioFinanceiro.lucro.toFixed(2)]
+          ];
+          exportarPDF('Relatório Financeiro', ['Descrição', 'Valor (R$)'], dados);
+        }}>
           Exportar PDF
         </button>
       </section>
@@ -96,4 +196,3 @@ const Relatorios = () => {
 };
 
 export default Relatorios;
-

@@ -7,17 +7,17 @@ import classes from "./Dashboard.module.css";
 const Dashboard = () => {
   return (
     <div className={classes.dashboardContainer}>
-      <Estatisticas/>
+      <Estatisticas />
       <div className={classes.graficoContainer}>
-        <GraficoVendasCompras/></div>
-      <div className={classes.graficoContainer}>
-        <GraficoReceitaDespesa/>
+        <GraficoVendasCompras />
       </div>
       <div className={classes.graficoContainer}>
-        <GraficoMaisVendidos/>
+        <GraficoReceitaDespesa />
+      </div>
+      <div className={classes.graficoContainer}>
+        <GraficoMaisVendidos />
       </div>
     </div>
-      
   );
 };
 
