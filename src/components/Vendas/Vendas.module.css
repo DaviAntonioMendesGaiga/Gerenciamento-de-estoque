@@ -15,12 +15,14 @@
   transition: all 0.4s ease;
 }
 
+
 .secaoVendas:hover {
   transform: scale(1.008);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .tituloVendas {
+  color:white;
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
@@ -202,6 +204,11 @@ input:hover{
   margin-top: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition:0.25s;
+}
+
+.formularioNovaVenda:hover{
+  transform:scale(1.008);
 }
 
 .formularioNovaVenda h2 {

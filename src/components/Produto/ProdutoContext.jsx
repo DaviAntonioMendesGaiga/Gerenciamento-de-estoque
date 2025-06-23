@@ -25,13 +25,25 @@ export const ProdutoProvider = ({ children }) => {
     );
   };
 
+  // Adicione esta função para aumentar o estoque
+  const adicionarEstoque = (id, quantidade) => {
+    setProdutos((prev) =>
+      prev.map((p) =>
+        p.id === id
+          ? { ...p, quantidade: p.quantidade + quantidade }
+          : p
+      )
+    );
+  };
+
   return (
     <ProdutoContext.Provider 
       value={{ 
         produtos, 
         adicionarProduto, 
         removerProduto,
-        diminuirEstoque 
+        diminuirEstoque,
+        adicionarEstoque // Adicione esta linha
       }}
     >
       {children}
