@@ -89,10 +89,11 @@
 
 }
 
-@media (max-width:840px){
+@media (max-width:910px){
     .estatisticasContainer{
         display:flex;
-        gap:0px;
+        flex-direction:column;
     }
 
 }
+

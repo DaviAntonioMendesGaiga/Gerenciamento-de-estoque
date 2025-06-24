@@ -1,13 +1,21 @@
 import { Boxes, Wallet, ShoppingBag, AlertTriangle } from "lucide-react";
 import { useProdutos } from "../Produto/ProdutoContext";
+import { useVendas } from "../Vendas/VendaContext"; // Caminho corrigido
 import classes from "./Estatisticas.module.css";
 
 const Estatisticas = () => {
   const { produtos } = useProdutos();
+  const { vendas } = useVendas();
 
   const produtosCadastrados = produtos.length;
   const faturamento = produtos.reduce((acc, p) => acc + p.preco * p.quantidade, 0);
-  const vendasDoDia = 5; // pode simular ou integrar depois
+  
+  // Calculando vendas do dia
+  const hoje = new Date().toISOString().split('T')[0];
+  const vendasDoDia = vendas.filter(venda => 
+    venda.data && new Date(venda.data).toISOString().split('T')[0] === hoje
+  ).length;
+
   const baixoEstoque = produtos.filter((p) => p.quantidade <= 3).length;
 
   return (
@@ -19,7 +27,7 @@ const Estatisticas = () => {
 
       <div className={classes.itensEstoque}>
         <h2>Faturamento do mês <Wallet size={20} className={classes.icon} /></h2>
-        <p>R$ {faturamento}</p>
+        <p>R$ {faturamento.toFixed(2)}</p>
       </div>
 
       <div className={classes.vendasDia}>

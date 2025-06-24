@@ -12,8 +12,9 @@ export const VendaProvider = ({ children }) => {
       ...prev,
       {
         id: Date.now(),
+        data: new Date(),
         ...vendaData
-      },
+      }
     ]);
   };
 
@@ -24,4 +25,4 @@ export const VendaProvider = ({ children }) => {
   );
 };
 
-export { VendaContext };
+export default VendaContext;

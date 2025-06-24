@@ -7,6 +7,7 @@ import Entradas from "./components/Entradas/Entradas";
 import Vendas from "./components/Vendas/Vendas";
 import Relatorios from "./components/Relatórios/Relatorios";
 import BuscarProdutos from "./components/BuscarProdutos/BuscarProdutos";
+import Footer from "./components/Footer/Footer";
 import { Element } from "react-scroll";
 
 function App() {
@@ -54,6 +55,11 @@ function App() {
             <h1 className="h1-margin">Buscar Produtos</h1>
             <BuscarProdutos />
           </Element>
+
+          <div className="footer-margin">
+            <h1>Feito por Davi</h1>
+            <Footer/>
+          </div>
         </main>
       </div>
     </>
