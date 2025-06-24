@@ -9,7 +9,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import classes from "./sidebar.module.css";
+import classes from "./Sidebar.module.css";
 import GSGerenciamentosLogo from "../../assets/GSGerenciamentosLogo.png";
 import { Link } from "react-scroll";
 import { useState } from "react";
