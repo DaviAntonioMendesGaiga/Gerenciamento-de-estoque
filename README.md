@@ -59,14 +59,14 @@ A Logo GSGerenciamentos foi produzida no intuito de simular uma empresa, e fiz a
 
 ## Rode o projeto localmente:
 
-# Clone o repositório
+### Clone o repositório
 git clone https://github.com/DaviAntonioMendesGaiga/Gerenciamento-de-estoque.git
 
-# Instale as dependências
+### Instale as dependências
 npm install
 
-# Acesse a pasta do projeto
+### Acesse a pasta do projeto
 cd gerenciamentodeestoque
 
-# Rode o projeto
+### Rode o projeto
 npm run dev
