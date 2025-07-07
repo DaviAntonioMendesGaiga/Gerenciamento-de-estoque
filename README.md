@@ -55,7 +55,7 @@ A Logo GSGerenciamentos foi produzida no intuito de simular uma empresa, e fiz a
 
 ## Aqui está o sistema totalmente utilizável online:
 
-[Clique aqui para gerar seu QR Code](https://gerenciamento-de-estoque-4b57.vercel.app/)
+[Gerenciamento de Estoque](https://gerenciamento-de-estoque-4b57.vercel.app/)
 
 ## Rode o projeto localmente:
 
