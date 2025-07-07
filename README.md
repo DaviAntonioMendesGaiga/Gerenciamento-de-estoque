@@ -1,12 +1,72 @@
-# React + Vite
+## Sistema de Gerenciamento de Estoque
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto desenvolvido com React que tem como finalidade representar um sistema de gerenciamento de estoque, e trabalho individual da minha faculdade.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- CSS Modules
+- Framer Motion
+- jsPDF + AutoTable
+- LocalStorage
+- React Libraries ( todas no arquivo package.json )
 
-## Expanding the ESLint configuration
+## Objetivo do Trabalho
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+O Principal objetivo desse trabalho era criar um sistema web comumente utilizado no mercado, como uma loja virtual, um site de hospedagem, ou outro por exemplo. Como ainda não tenho um bom conhecimento em linguagens
+back-end, optei por fazer essa parte com uma simulação no front-end, atribuindo as funcionalidades necessárias de um sistema de gerenciamento. 
+
+## Principais desafios:
+
+-Grande quantidade de novos conteúdos
+-Atualizar e atribuir as mudanças no site conforme a chegada de novas informações.
+-Simular o back-end com front-end
+-Sistema responsivo em Dekstop x Mobile
+
+## Novidades
+
+Durante o desenvolvimento, me deparei com bastante conteúdo novo e que não havia ainda visto nem nos cursos que faço de programação, dentre eles: Hooks (UseEffect, CreateContext, UseContext, personalizados), 
+LocalStorage, Libraries do react e entre outros. Como o prazo para a entrega era curto, priorizei finalizar toda lógica que envolvia tais conteúdos, depois peguei para reler e compreender o funcionamento
+de cada coisa, e hoje compreendo estes conceitos e a lógica do sistema.
+
+ ## Site dinâmico
+
+Sem dúvidas deixar o site dinâmico me custou trabalho, pois minha intenção era deixar os produtos e informações todos já predefinidos, principalmente por não ter noção de como faria essa dinâmica.
+Porém, resolvi fazer essa mudança, e com bastante  ajuda da IA, consegui deixar o site reativo aos movimentos que são feitos no mesmo.
+
+## Simulação do back-end no front-end
+
+Como mencionado no tópico anterior, a principal dificuldade foi fazer isso sem um grande conhecimento prévio. Fiz a lógica, em seguida testes de funcionalidade, 
+e depois de finalizado, reli todo o código e compreendi o que estava sendo feito.
+
+## Responsividade Desktop e Mobile
+
+Um problema que eu enfrentei foi a dificuldade em tornar o sistema responsivo em mobile, uma vez que optei por uma sidebar ( navbar vertical e posicionada ao canto da tela ). Tive a ideia
+de fazer com que em telas menores, a barra de navegação mudasse para o centro da tela, o que facilitou e muito o desenvolvimento e tornou o site utilizável em dispositivos menores.
+
+## Considerações Finais:
+
+Fazer esse projeto para mim foi excelente, pois por mais que tenha sofrido para finalizá-lo, me ensinou muito e sem dúvidas me melhorou como desenvolvedor. 
+Apesar de tudo, algumas coisas eu não consegui resolver no meu site, como o card de faturamento do mês no dashboard , que dependendo do movimento , reduz o faturamento mensal 
+( provavelmente pois não simulei compras no meu site ) e o registro de vendas , que acaba removendo produtos do estoque, sendo que era apenas para fazer um registro. Sobre o design, Apesar dos erros, posso
+melhorar esse site futuramente, corrigindo os bugs e adicionando sistemas de login, quando estiver mais desenvolvido. Sobre o design, não tive problemas em fazer o design do site, recorrendo a IA apenas a lógica. 
+A Logo GSGerenciamentos foi produzida no intuito de simular uma empresa, e fiz a edição de imagens para colocar no meu site, como as duas que estão nos botões de adicionar produto e excluir produto.  
+
+
+## Aqui está o sistema totalmente utilizável online:
+
+[Clique aqui para gerar seu QR Code](https://gerador-de-qrcode-gamma.vercel.app/)
+
+## Rode o projeto localmente:
+
+# Clone o repositório
+git clone https://github.com/DaviAntonioMendesGaiga/Gerenciamento-de-estoque.git
+
+# Instale as dependências
+npm install
+
+# Acesse a pasta do projeto
+cd gerenciamentodeestoque
+
+# Rode o projeto
+npm run dev
