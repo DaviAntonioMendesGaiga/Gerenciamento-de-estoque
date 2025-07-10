@@ -54,7 +54,12 @@ A Logo GSGerenciamentos foi produzida no intuito de simular uma empresa, e fiz a
 
 ## Demonstração:
 
+![MeuVdeo133-ezgif com-video-to-gif-converter (1)](https://github.com/user-attachments/assets/8dd992e1-fe1a-4b2b-9397-a580706ebc80)
+
+*Mostrando responsividade, zoom e navegação pela sidebar*
+
 ![MeuVdeo132-ezgif com-video-to-gif-converter ](https://github.com/user-attachments/assets/3ae106ea-875c-4b0e-a508-5892a69e452d)
+
 *Área de adição e gerenciamento de produtos*
 
 
