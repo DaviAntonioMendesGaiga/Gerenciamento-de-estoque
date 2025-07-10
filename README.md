@@ -50,7 +50,12 @@ Fazer esse projeto para mim foi excelente, pois por mais que tenha sofrido para 
 Apesar de tudo, algumas coisas eu não consegui resolver no meu site, como o card de faturamento do mês no dashboard , que dependendo do movimento , reduz o faturamento mensal 
 ( provavelmente pois não simulei compras no meu site ) e o registro de vendas , que acaba removendo produtos do estoque, sendo que era apenas para fazer um registro. Sobre o design, Apesar dos erros, posso
 melhorar esse site futuramente, corrigindo os bugs e adicionando sistemas de login, quando estiver mais desenvolvido. Sobre o design, não tive problemas em fazer o design do site, recorrendo a IA apenas a lógica. 
-A Logo GSGerenciamentos foi produzida no intuito de simular uma empresa, e fiz a edição de imagens para colocar no meu site, como as duas que estão nos botões de adicionar produto e excluir produto.  
+A Logo GSGerenciamentos foi produzida no intuito de simular uma empresa, e fiz a edição de imagens para colocar no meu site, como as duas que estão nos botões de adicionar produto e excluir produto.
+
+## Demonstração:
+
+![MeuVdeo132-ezgif com-video-to-gif-converter ](https://github.com/user-attachments/assets/3ae106ea-875c-4b0e-a508-5892a69e452d)
+*Área de adição e gerenciamento de produtos*
 
 
 ## Aqui está o sistema totalmente utilizável online:
